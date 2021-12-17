@@ -7,10 +7,10 @@ import {
     sectionContainer: {
       backgroundColor: '#fff',
       paddingHorizontal: 12,
-      marginLeft:'2%',
-      marginRight:'2%',
-      marginTop:'2%',
-      marginBottom: '2%'
+      paddingLeft:'2%',
+      paddingRight:'2%',
+      marginTop:'1%',
+      paddingBottom: '2%'
     },
     sectionTitle: {
       fontWeight: '700',
@@ -56,14 +56,15 @@ import {
       
     },
     itemContainer: {
-      width: 100,
-      marginLeft: 32,
-      marginRight: 32,
-      marginTop: 10,
+      width: 150,
+      marginLeft: 10,
+      marginRight: 10,
+     
+      //marginTop: 5,
      borderBottomColor: '#ECEDF0', 
     },
     itemImage: {
-      width: 130,
+      width: 150,
       height: 130,
       resizeMode: 'contain' 
   

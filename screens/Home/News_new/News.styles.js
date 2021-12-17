@@ -4,10 +4,10 @@ export const styles = StyleSheet.create({
     sectionContainer: {
       backgroundColor: '#fff',
       paddingHorizontal: 12,
-      marginLeft:'2%',
-      marginRight:'2%',
-      marginTop:'2%',
-      marginBottom: '2%'
+      paddingLeft:'2%',
+      paddingRight:'2%',      
+      marginBottom: '2%',
+      
     },
     sectionTitle: {
       fontWeight: '700',
@@ -54,21 +54,21 @@ export const styles = StyleSheet.create({
     },
     itemContainer: {
       width: 100,
-      marginLeft: '3%',
-      marginRight: '17%',
+      marginLeft: '11%',
+      marginRight: '11%',
       //marginTop: 10,
      borderBottomColor: '#ECEDF0', 
+     alignItems:'center'
     },
     itemImage: {
-      width: 130,
+      width: '160%',
       height: 130,
-      resizeMode: 'contain' 
-  
+      resizeMode: 'contain'
     },
     itemName: {
-      fontSize: 15,
+      fontSize: 17,
       color: '#484848',
-      marginVertical: 4,
+      //marginVertical: 2,
     },
     itemPrice: {
       fontSize: 16,

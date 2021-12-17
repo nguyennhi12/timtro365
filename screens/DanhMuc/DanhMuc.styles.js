@@ -11,7 +11,7 @@ import {
         flex: 1,
         backgroundColor: '#ECEDF0',  
         width: '100%',
-        marginTop: '0%',
+        marginTop: '10%',
         
     },
     navigation:{
@@ -27,7 +27,7 @@ import {
       
     },
     listItem:{
-      marginTop:"2%",
+      paddingTop:"2%",
       backgroundColor: '#FFFF',  
       width: '100%',
       

@@ -4,31 +4,31 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles } from './Morestyles';
-import { useNavigation } from '@react-navigation/core';
+import { Avatar} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {GetAccount,ReloadPage} from '../../hook/Account'
+import {GetAccount} from '../../hook/Account'
 import { useIsFocused } from '@react-navigation/native';
-
+import Icon from 'react-native-vector-icons/AntDesign'
+import { color } from 'react-native-reanimated';
  const ProfileScreen =  ({navigation}) => {
   
     const ProfileItem = ({icon, name, _onpress}) => (
       <View style={styles.itemContainer}>
-        <MaterialCommunityIcons name={icon} size={26} color="#4a027f" />
+        <MaterialCommunityIcons name={icon} size={26} color="#AB49E9" />
         {_onpress=='SignOut'?<Text style={[styles.itemText, {marginLeft: icon ? 20 : 0}]} onPress={SignOut} >{name}</Text>:<Text style={[styles.itemText, {marginLeft: icon ? 20 : 0}]} >{name}</Text>}
-        <FontAwesome name="angle-right" size={26} color="#4a027f" />
+        <FontAwesome name="angle-right" size={26} color="#AB49E9" />
       </View>
     ); 
     
     const{account,setaccount}=GetAccount()
     async function SignOut(){
-      await AsyncStorage.removeItem('account')        
-      console.log('1234')
+      await AsyncStorage.removeItem('account') 
       setaccount(null)
       window.location.href = window.location.href;
       
     } 
     const onPress_TinDang_Luu =async ()=>{
-      //const account = JSON.parse(await AsyncStorage.getItem("account"))
+      const account = JSON.parse(await AsyncStorage.getItem("account"))
       if(account==null){
         ToastAndroid.show("Bạn chưa đăng nhập",ToastAndroid.SHORT)
       }else{
@@ -50,7 +50,7 @@ import { useIsFocused } from '@react-navigation/native';
       
     } 
     const onPress_Follow =async ()=>{
-      //const account = JSON.parse(await AsyncStorage.getItem("account"))
+      const account = JSON.parse(await AsyncStorage.getItem("account"))
       if(account==null){
         ToastAndroid.show("Bạn chưa đăng nhập",ToastAndroid.SHORT)
       }else{
@@ -60,31 +60,32 @@ import { useIsFocused } from '@react-navigation/native';
     }
     const isFocused = useIsFocused();
     const fetchRoadmap = useCallback( async()=>{
-      console.log("uaaa")
       var result=JSON.parse(await AsyncStorage.getItem("account"))
       setaccount(result)
     },[]) 
     useEffect(()=>{
-        console.log("hihi")
         fetchRoadmap()
      },[isFocused]);
     return (
         <View style={styles.bodyContainer}>
+          <View style={{backgroundColor:'#AB49E9', paddingTop:'2%'}}>
+            <Icon name='setting' size={25} style={{marginLeft:'90%'}} color='white'/>
+          </View>
           <View style={styles.userContainer}>
           {account==null? <View style={styles.avatarContainer}>
                             <MaterialIcons name="person" size={26} color="#fff" 
                             onPress={()=>navigation.navigate('Information')}/>
                           </View>
-                        :<Image source={{
+                        :<Avatar.Image source={{
                           uri: account.image,
-                        }} style={styles.itemImage}/>}
+                        }} size={90}/>}
             <View style={styles.textContainer}>
               <Text style={styles.welcomeText}>Chào mừng bạn đến với Nhà trọ 365</Text>
               {account==null?<Text style={styles.authText} onPress={()=>navigation.navigate('Đăng nhập')}>Đăng nhập/Đăng ký </Text>
                               :<Text style={styles.authText} onPress={()=>navigation.navigate('Information',account)}>{account.displayname} </Text>}
               
             </View>            
-            <FontAwesome name="angle-right" size={26} color="#1e88e5" />
+            {/* <FontAwesome name="angle-right" size={26} color="#1e88e5" /> */}
           </View>
           <View style={styles.divider} />
           <TouchableOpacity onPress={onPress_TinDang_Luu}>
@@ -102,7 +103,7 @@ import { useIsFocused } from '@react-navigation/native';
           </TouchableOpacity>
           
           {/* <ProfileItem icon="cog-outline" name="Cài đặt" /> */}
-          {account==null?console.log("null roi")
+          {account==null?console.log("")
                               :<ProfileItem icon="logout" name="Đăng xuất" _onpress='SignOut'/>}
           
           

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Avatar} from 'react-native-paper';
-import { ScrollView, View, FlatList, StyleSheet, Text, StatusBar, TouchableWithoutFeedback, TouchableHighlightBase } from 'react-native';
-import StackDanhMuc from '../../DanhMuc';
+import { View, FlatList, StyleSheet, Text} from 'react-native';
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const DATA = [
@@ -34,8 +34,8 @@ const DATA = [
   ];
 
   const Item = ({ item }) => (
-    <View style={{padding:'3%', marginLeft:'6%'}}>
-        <Avatar.Image source={item.srce}size={70}></Avatar.Image>
+    <View style={{marginRight:'10%', alignItems:'center', marginBottom:'6%'}}>
+        <Avatar.Image  source={item.srce}size={80}></Avatar.Image>
         <Text style={styles.title}>{item.title}</Text>
     </View>
   ); 
@@ -47,7 +47,6 @@ const DanhMuc = ({navigation}) => {
         </TouchableOpacity>
       );
     function onPress(data){
-        
         navigation.navigate('danhmuc',data)
         
     }
@@ -67,15 +66,14 @@ const DanhMuc = ({navigation}) => {
 
 )};
 
-function actionOnRow(item) {
-    console.log('Selected Item :',item)};
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,        
         backgroundColor:'white',
-        marginLeft:'2%',
-        marginRight:'2%',
+        paddingLeft:'2%',
+        paddingRight:'2%',
         marginTop:'2%',
         marginBottom: '2%'
     },
@@ -87,8 +85,11 @@ const styles = StyleSheet.create({
       
     },
     title: {
-      fontSize: 15,
-      marginLeft: '4%'
+      fontSize: 16,
+      //marginLeft: '5%'
+      //alignItems:'center'
+      marginBottom:'3%',
+      alignContent:'center'
     },
     danhmuc:{
         fontSize: 18, 

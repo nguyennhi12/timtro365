@@ -5,12 +5,13 @@ import  Innkeeper  from "../config/Innkeeper";
 
 export const HookNews=()=>{
     try{
-    const [results, setresult]=useState([]);
-    const[check, setcheck]=useState(false)    
-    const fetchRoadmap = useCallback( async()=>{
+        const [statusresult, setstatusresult]=useState()
+        const [results, setresult]=useState();
+        const[check, setcheck]=useState(false)    
+        const fetchRoadmap = useCallback( async()=>{
         try{  
             const detail=await News.getNewsbydate('06/12/2021'); 
-            console.log(detail)   
+            setstatusresult(detail.statusCode)
             if(detail.statusCode==200){
                 setresult(detail.data); 
                 setcheck(true);
@@ -32,22 +33,16 @@ export const HookNews=()=>{
                   },
                 ])
                 setcheck(true)}
-                
-                   
             }   
-             
         }catch(error){
             console.log(error)
         }
-       
     },[results])        
     
     useEffect(()=>{ 
         try{
-            if((check==false)){ 
-                console.log("123")
+            if((check==false)){                 
                 fetchRoadmap();
-               
             }        
             else{   
                
@@ -55,14 +50,11 @@ export const HookNews=()=>{
         }catch(error){
             console.log(error)
         }
-        
     },[check,fetchRoadmap] )
-    return {results,setcheck, check,setresult};
-
+    return {results,setcheck, check,setresult,statusresult};
     }catch(error){
         console.log(error)
     }
-    
 }
 
 
@@ -73,10 +65,9 @@ export const HookGetNews=(type)=>{
     const fetchRoadmap = useCallback( async()=>{
         try{  
             const detail=await News.getNewsbytype(type);    
-            setcheck(true); 
-            if(detail.statusCode==200){}     
-            setresult(detail); 
-            //console.log(detail,check) 
+            setcheck(true);                 
+            setresult(detail);
+            
         }catch(error){
             console.log(error)
         }
@@ -85,13 +76,10 @@ export const HookGetNews=(type)=>{
     
     useEffect(()=>{ 
         try{
-            if((check==false)){ 
-                //console.log("123")
+            if((check==false)){                
                 fetchRoadmap();
-            }        
-            else{   
-               
-            }
+            }       
+            
         }catch(error){
             console.log(error)
         }
@@ -110,13 +98,13 @@ export const HookImageNewsbyIdnews=(id_news)=>{
     const [results, setresult]=useState([]);
     const[check, setcheck]=useState(false)    
     const fetchRoadmap = useCallback( async()=>{
-        try{  
-            const detail=await News.getimage_news_byid_news(id_news);    
-            if(detail.statusCode==200){
-                setcheck(true);
-            }        
-            setresult(detail); 
-            //console.log(detail,check) 
+        try{ 
+            const detail= await News.getimage_news_byid_news(id_news);
+            if(detail!=null){
+                setcheck(true)
+                setresult(detail.data)
+            }    
+           
         }catch(error){
             console.log(error)
         }
@@ -155,17 +143,15 @@ export const HookGetSaveNews=()=>{
             setcheckgetsavenews(true);        
             setsavenew(detail.data); 
             setStatuscodeSave(detail.statusCode)
-            //console.log(detail,check) 
+            //console.log(checkgetsavenews,savenew)
         }catch(error){
             console.log(error)
         }
        
-    },[savenew])        
-    
+    },[savenew])   
     useEffect(()=>{ 
         try{
             if((checkgetsavenews==false)){ 
-                //console.log("123")
                 fetchRoadmap();
             }        
             else{   

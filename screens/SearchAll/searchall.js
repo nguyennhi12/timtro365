@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ListItem, Avatar, Button } from 'react-native-elements';
 import { StyleSheet, Text, View, TouchableOpacity, ToastAndroid } from 'react-native';
-import  {SearchAll} from '../../../hook/News';
+import  {SearchAll} from '../../hook/News';
 import { Searchbar } from 'react-native-paper';
 import IconBack  from 'react-native-vector-icons/AntDesign';
 import { Select ,NativeBaseProvider, Center} from 'native-base';
-import {HookGetSaveNews} from '../../../hook/News';
+import {HookGetSaveNews} from '../../hook/News';
 import Icon  from 'react-native-vector-icons/FontAwesome';
 import { styles } from './searchall.styles';
 

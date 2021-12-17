@@ -6,14 +6,10 @@ import DanhMuc from './DanhMuc/danhmuc';
 import News from './News_new/News';
 import { Searchbar } from 'react-native-paper';
 import Icon  from 'react-native-vector-icons/FontAwesome';
-import { SearchAll } from '../../hook/News';
 export default function Home({navigation}) {    
     const[searchkey, setSearchkey]=useState('');
-    
-
     const onPress =()=>{
         navigation.navigate("searchall",searchkey)
-        //console.log("search nhe",searchkey)
     }
     return (
         <View style={styles.container}>  

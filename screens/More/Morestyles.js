@@ -6,14 +6,18 @@ export const styles = StyleSheet.create({
     bodyContainer: {
       flex: 1,
       backgroundColor: '#ededed',
+      marginTop:'12%',
+      
     },
     
     userContainer: {
-      backgroundColor: '#fff',
+      backgroundColor: '#AB49E9',
       flexDirection: 'row',
       paddingHorizontal: 20,
       paddingVertical: 22,
       alignItems: 'center',
+      paddingBottom:'5%',
+      paddingTop:'5%'
     },
     avatarContainer: {
       width: 60,
@@ -25,15 +29,18 @@ export const styles = StyleSheet.create({
     },
     textContainer: {
       flex: 1,
-      marginLeft: 20,
+      marginLeft: 10,
+      //fontSize:18
     },
     welcomeText: {
-      color: '#828282',
+      color: 'white',
+      fontSize:15,
+      fontWeight:'bold'
     },
     authText: {
-      color: '#4a0281',
-      fontSize: 18,
-      fontWeight: '500',
+      color: 'white',
+      fontSize: 22,
+      fontWeight: 'bold',
     },
     //
     itemContainer: {
@@ -45,8 +52,9 @@ export const styles = StyleSheet.create({
   
     },
     itemText: {
+      fontSize:17,
       flex: 1,
-      color: '#4a027f',
+      color: 'black',
     },
     //
     divider: {

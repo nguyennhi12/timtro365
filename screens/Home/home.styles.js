@@ -1,9 +1,6 @@
 import {
     StyleSheet,
-    View,
-    Text,
-    Image,
-    Dimensions,
+
   } from 'react-native';
 
   export const styles = StyleSheet.create({
@@ -11,7 +8,7 @@ import {
         flex: 1,
         backgroundColor: '#ECEDF0',  
         width: '100%',
-        marginTop:'0%'
+        marginTop:'10%'
     },
     card:{
         backgroundColor: '#3E0895',

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import {View,TouchableOpacity,Text, ScrollView,Image, ToastAndroid } from 'react-native';
+import {View,TouchableOpacity,Text, ScrollView,ToastAndroid } from 'react-native';
 import {styles} from './detail_news.styles'
 import IconBack  from 'react-native-vector-icons/AntDesign';
 import Swiper from './Swiper/swiper';
@@ -10,16 +10,11 @@ import MoreNews from './MoreNews/MoreNews';
 import { useIsFocused } from '@react-navigation/native';
 import {HookGetSaveNews} from '../../hook/News'
 export default function Home({route,navigation}) {
-    const data=route.params      
-    const [checksave, setchecksave]=useState(data.checksave)
+    const data=route.params
     const {savenew,setcheckgetsavenews, checkgetsavenews,statusCodeSave}=HookGetSaveNews()
     const checksavenew=(id_news)=>{
-      //console.log(savenew.length)
       for(let i=0;i<savenew.length;i++){
-          //console.log(savenew[i].id_news,id_news)
           if(savenew[i].id_news==id_news){
-              //console.log(savenew[i].id_news,id_news)
-              //set_checksave(true)
               return true
           }
       }
@@ -29,13 +24,10 @@ export default function Home({route,navigation}) {
       navigation.goBack()
     }
     const pressHandlerHeart =()=>{
-      //navigation.goBack()
-      console.log("tymmm")
       console.log(data)
     }
   
     const pressHandlerHeart_Save =async()=>{
-     // console.log(statusCodeSave)
       if(statusCodeSave==200){
         const results= await News.save_news(data.id_news)
         console.log(results)
@@ -43,7 +35,11 @@ export default function Home({route,navigation}) {
           setcheckgetsavenews(!checkgetsavenews)
         }else{
           if(results.statusCode==401){
-            console.log("chưa đăng nhập")
+            ToastAndroid("Bạn chưa đăng nhập",ToastAndroid.SHORT)
+          }else{
+            if(results.statusCode==400){
+              ToastAndroid.show("Bản tin này đã được lưu",ToastAndroid.SHORT)
+            }
           }
         }
       }else{
@@ -52,19 +48,21 @@ export default function Home({route,navigation}) {
         
     }
     const pressHandlerHeart_unSave = async()=>{
-      //console.log(statusCodeSave)
       if(statusCodeSave==200){
         const results= await News.un_save_news(data.id_news)
-        console.log(results)
         if(results.statusCode==200){
           setcheckgetsavenews(!checkgetsavenews)
         }else{
           if(results.statusCode==401){
-            console.log("chưa đăng nhập")
+           ToastAndroid("Bạn chưa đăng nhập",ToastAndroid.SHORT)
+          }else{
+            if(results.statusCode==400){
+              ToastAndroid.show("Bản tin này đã được lưu",ToastAndroid.SHORT)
+            }
           }
         }
       }else{
-        ToastAndroid.show("Chưa đăng nhập!",ToastAndroid.SHORT)
+        ToastAndroid.show("Bạn chưa đăng nhập!",ToastAndroid.SHORT)
       }
       
     }
@@ -73,13 +71,12 @@ export default function Home({route,navigation}) {
       if(statusCodeSave==200){
         navigation.navigate('schedule_news',data)
       }else{
-        ToastAndroid.show("Chưa đăng nhập!",ToastAndroid.SHORT)
+        ToastAndroid.show("Bạn chưa đăng nhập!",ToastAndroid.SHORT)
       }
       
     }
     const isFocused = useIsFocused();    
     useEffect(()=>{
-        console.log("hihi")
         setcheckgetsavenews(!checkgetsavenews)
      },[isFocused]);
     return (
@@ -87,20 +84,20 @@ export default function Home({route,navigation}) {
           {/* header */}
           <View style={styles.navigation}> 
             <TouchableOpacity style={{margin:'2%'}} onPress={pressHandler}>
-              <IconBack name="arrowleft" color="white" size={28}  />
+              <IconBack name="arrowleft" color="#AB49E9" size={28}  />
             </TouchableOpacity>
             {
-              savenew==null?console.log("null nè")
+              savenew==null?<IconBack name="heart" color='#AB49E9' size={28}  />
               :checksavenew(data.id_news)?<TouchableOpacity style={{margin:'2%', marginLeft:'60%'}} onPress={pressHandlerHeart_unSave}>
               <IconBack name="heart" color="red" size={28}  />
               </TouchableOpacity>
               :<TouchableOpacity style={{margin:'2%', marginLeft:'60%'}} onPress={pressHandlerHeart_Save}>
-                <IconBack name="heart" color="white" size={28}  />
+                <IconBack name="heart" color="#AB49E9" size={28}  />
               </TouchableOpacity>
             }
             
             <TouchableOpacity style={{margin:'2%', marginLeft:'5%'}} onPress={pressHandlerHeart}>
-              <IconBack name="bars" color="white" size={30}  />
+              <IconBack name="bars" color="#AB49E9" size={30}  />
             </TouchableOpacity>
           </View>
            {/* Show hình nè */}
@@ -116,13 +113,13 @@ export default function Home({route,navigation}) {
                                 :checksavenew(data.id_news)?
                   <Button
                   style={{marginLeft:'50%'}}
-                  icon={<IconBack name="heart" size={20} color='pink'/>}
+                  icon={<IconBack name="heart" size={20} color='red'/>}
                   iconRight
                   onPress={pressHandlerHeart_unSave}
                   title='Bỏ lưu tin  '
                   buttonStyle={{backgroundColor:'#3E0895'}}/>:<Button
                   style={{marginLeft:'50%'}}
-                  icon={<IconBack name="heart" size={20} color='pink'/>}
+                  icon={<IconBack name="heart" size={20} color='white'/>}
                   iconRight
                   onPress={pressHandlerHeart_Save}
                   title='Lưu tin  '
@@ -134,7 +131,7 @@ export default function Home({route,navigation}) {
                   <TouchableOpacity>
                     <IconBack name='enviroment' size={27}></IconBack>
                   </TouchableOpacity>
-                  <Text style={{marginTop:'1%', marginLeft:'2%'}}>{data.home_number},đường {data.street}, {data.ward}, {data.distric}, {data.city} </Text>
+                  <Text style={{marginTop:'1%', marginLeft:'2%', width:'90%'}} >{data.home_number},đường {data.street}, {data.ward}, {data.distric}, {data.city} </Text>
             </View>             
           </View>
           {/* infomation của innkeeper nè */}

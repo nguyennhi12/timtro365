@@ -8,11 +8,11 @@ import {
         flex: 1,
         backgroundColor: '#ECEDF0',  
         width: '100%',
-        marginTop: '8%',
+        marginTop: '10%',
         
     },
     navigation:{
-      backgroundColor: '#3E0895',  
+      backgroundColor: 'white',  
       width: '100%',
       flexDirection:'row'
     
@@ -24,7 +24,7 @@ import {
       
     },
     listItem:{
-      //marginTop:"3%",
+      marginTop:"1%",
       backgroundColor: '#FFFF',  
       //width: '100%',
       

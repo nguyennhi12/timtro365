@@ -5,7 +5,8 @@ import {
   Image,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import {styles} from './News.styles'
 import {HookNews} from '../../../hook/News'
@@ -23,28 +24,20 @@ const Item = ({ item }) => (
     <Text style={styles.itemName} numberOfLines={2}>
       {item.header}
     </Text>
-    <Text style={styles.itemPrice}>{item.cost} VNĐ</Text>
+    <Text style={styles.itemPrice}>{item.cost/10} triệu VNĐ</Text>
   </View>
 ); 
 const HomeSectionComponent = ({navigation}) => {
-  const {results, setcheck, check,setresult}= HookNews();
-  if(results==null){
-    console.log(results)
-    
-  }
-  const checksavenew=(id_news)=>{
-    //console.log(savenew.length)
-    for(let i=0;i<savenew.length;i++){
-        //console.log(savenew[i].id_news,id_news)
-        if(savenew[i].id_news==id_news){
-            //console.log(savenew[i].id_news,id_news)
-            //set_checksave(true)
+  const {results, statusresult}= HookNews();  
+  const checksavenew=(id_news)=>{    
+    for(let i=0;i<savenew.length;i++){        
+        if(savenew[i].id_news==id_news){           
             return true
         }
     }
     return false
 }
-  const {savenew,setcheckgetsavenews, checkgetsavenews,statusCodeSave}=HookGetSaveNews()
+  const {savenew,statusCodeSave}=HookGetSaveNews()
   const pressListItem =(item)=>{
     var checksave=false
     if(statusCodeSave==200){
@@ -62,8 +55,7 @@ const HomeSectionComponent = ({navigation}) => {
     } else{
         const data={
             ...item,
-            checksave:false,
-            //checksave:checksave,
+            checksave:false,            
             statusCodeSave:false
         }
         navigation.navigate('detail_news',data)
@@ -74,15 +66,18 @@ const HomeSectionComponent = ({navigation}) => {
     <TouchableOpacity onPress={pressListItem.bind(this,item)}>                    
                 <Item item={item} />  
     </TouchableOpacity>
-  );
-  
+  );  
   return (
     <View style={styles.sectionContainer}>
       {/*  */}
       <Text style={styles.sectionTitle}>Tin đăng mới</Text>     
       {/*  */}      
       {/*  */}
-      <FlatList
+      {statusresult==null?<ActivityIndicator size="large" color="#3E0895" />
+        :results==null?<View style={styles.seeMoreContainer}>
+        <Text style={styles.seeMoreText}>Hôm nay không có bài viết mới</Text>
+        </View>:<View>
+          <FlatList
             contentContainerStyle={{alignSelf: 'flex-start'}}
             numColumns='2'
             showsVerticalScrollIndicator={false}
@@ -91,11 +86,13 @@ const HomeSectionComponent = ({navigation}) => {
             renderItem={renderItem} 
             style={{marginLeft:'7%'}}
         />
-      {/*  */}
-      <View style={styles.seeMoreContainer}>
-        <Text style={styles.seeMoreText}>Không còn tin nào khác </Text>
-      </View>
-    </View>
+        {/*  */}
+          <View style={styles.seeMoreContainer}>
+            <Text style={styles.seeMoreText}>Không còn tin nào khác </Text>
+          </View>
+        </View>
+      }
+     </View>
   );
 };
 

@@ -6,7 +6,7 @@ import Home from '../Home/detailScreenHome';
 import DetailNews from '../Detail_News/detail_news'
 import InforInnkeeper from '../Infomation_of_Innkeeper/infomation_innkeeper';
 import ScheduleNews from '../ScheduleNews/ScheduleNews'
-import searchall from '../Home/SearchAll/searchall';
+import searchall from '../SearchAll/searchall';
 const Stack= createNativeStackNavigator();
 const StackDanhMuc=()=>{
   return (

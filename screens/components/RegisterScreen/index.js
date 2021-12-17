@@ -55,7 +55,7 @@ const RegisterScreen =()=>{
     const Regiter = async () =>{   
       if(username==""|| name==""|| password==""||email==""||address==""||phonenumber==""||repassword==""|| profileImage==""){
         showAlert({title:"ERROR",message:"Các thông tin đều là bắt buộc"})
-        console.log(password)
+        //console.log(password)
       }else{
         if(repassword!=password){
           showAlert({title:"ERROR",message:"Password và RePassword chưa trùng khớp"})
@@ -134,9 +134,6 @@ const RegisterScreen =()=>{
                     <TouchableOpacity  onPress={openImageLibrary} style={styles.uploadBtnContainer}>
                       {profileImage ? <Image source={{uri: profileImage}} style={{width: '100%', height: '100%'}}/>: <Text style={styles.uploadBtn}>Upload Profile Image</Text>}
                     </TouchableOpacity>
-                    {/* {profileImage ? (
-                    <Text onPress={uploadProfileImage} style={[styles.skip, {backgroundColor: 'green', color: 'white', borderRadius: 8},]}>Upload</Text>
-                    ):null} */}
                   </View>
                 </View>
                 <View style={{marginTop:'15%',height:50, justifyContent:'center',alignItems:'center'}}>

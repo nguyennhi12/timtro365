@@ -1,9 +1,6 @@
 import {
     StyleSheet,
-    View,
-    Text,
-    Image,
-    Dimensions,
+   
   } from 'react-native';
 
   export const styles = StyleSheet.create({
@@ -15,7 +12,7 @@ import {
         
     },
     navigation:{
-      backgroundColor: '#3E0895',  
+      backgroundColor: '#DFB0F6',  
       width: '100%',
       flexDirection:'row'
     
@@ -27,7 +24,7 @@ import {
       
     },
     listItem:{
-      marginTop:"2%",
+      paddingTop:"2%",
       backgroundColor: '#FFFF',  
       width: '100%',
       

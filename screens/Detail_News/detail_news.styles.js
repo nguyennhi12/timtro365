@@ -8,11 +8,11 @@ import {
         flex: 1,
         backgroundColor: '#ECEDF0',  
         width: '100%',
-        marginTop: '0%',
+        marginTop: '10%',
         
     },
     navigation:{
-      backgroundColor: '#3E0895',  
+      backgroundColor: 'white',  
       width: '100%',
       flexDirection:'row'
     

@@ -2,9 +2,7 @@ import { API_URL, Account } from "./config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const apiSettings = {
     login: async (account) => {
-        console.log(JSON.stringify({account}))        
         const endpoint = `${API_URL}${Account}login`;
-        console.log(endpoint)
         const result = await fetch(endpoint,
             {
                 method:'POST',
@@ -20,8 +18,6 @@ const apiSettings = {
               }).catch(function (error) {               
                 console.log(error);
               });
-            
-       
         return result;
     },
     signin: async (account) => {
@@ -44,8 +40,6 @@ const apiSettings = {
             }).catch(function (error) {               
               console.log(error);
             });
-          
-     
       return account;
   },
   get_infor_byid: async (id_user) => {
@@ -193,7 +187,7 @@ const apiSettings = {
     return result;
   },
   get_follower_id_user_id_follower: async (id_follower) => {
-    console.log(JSON.stringify(id_follower))        
+    //console.log(JSON.stringify(id_follower))        
     const endpoint = `${API_URL}${Account}get_follower_id_user_id_follower`;
     const account = JSON.parse(await AsyncStorage.getItem("account")) 
     const result = await fetch(endpoint,

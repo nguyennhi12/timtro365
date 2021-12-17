@@ -9,10 +9,8 @@ export const GetAccount=()=>{
     const fetchRoadmap = useCallback( async()=>{
         try{             
             const account = JSON.parse(await AsyncStorage.getItem("account"))
-            //console.log("dô nè")
             setaccount(account)
             setcheck(true);
-            
         }catch(error){
             console.log(error)
         }       
@@ -21,13 +19,8 @@ export const GetAccount=()=>{
     useEffect(()=>{ 
         try{
             if((check==false)){ 
-                console.log("123")
                 fetchRoadmap();
-               
-            }        
-            else{   
-               
-            }
+            }  
         }catch(error){
             console.log(error)
         }

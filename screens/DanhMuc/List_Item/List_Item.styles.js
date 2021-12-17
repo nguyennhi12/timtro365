@@ -1,9 +1,6 @@
 import {
     StyleSheet,
-    View,
-    Text,
-    Image,
-    Dimensions,
+   
   } from 'react-native';
 
   export const styles = StyleSheet.create({
@@ -27,14 +24,14 @@ import {
       
     },
     listItem:{
-      marginTop:"2%",
+      paddingTop:"2%",
       backgroundColor: '#FFFF',  
       width: '100%',
       
     },
 
     card:{
-        backgroundColor: '#3E0895',
+        backgroundColor: '#AB49E9',
         width: '30%',
         height: '25%',
         marginTop:'5%',

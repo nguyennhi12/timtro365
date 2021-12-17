@@ -16,7 +16,7 @@ const StackMore=()=>{
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen component={ProfileScreen} name='Thêm' options={{ title: 'Thêm' }}/>
+        <Stack.Screen component={ProfileScreen} name='Thêm' options={{headerShown: false}}/>
         <Stack.Screen component={LoginScreen} name='Đăng nhập'/>
         <Stack.Screen component={RegisterScreen} name='Đăng kí'/>
         <Stack.Screen component={Save_News} name='save_news' options={{headerShown: false}} />

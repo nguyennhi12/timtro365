@@ -16,12 +16,8 @@ import { useIsFocused } from '@react-navigation/native';
 const ProductItem = ({navigation,item}) =>{ 
     const {savenew,setcheckgetsavenews, checkgetsavenews}=HookGetSaveNews()    
     const checksavenew=(id_news)=>{
-        //console.log(savenew.length)
         for(let i=0;i<savenew.length;i++){
-            //console.log(savenew[i].id_news,id_news)
             if(savenew[i].id_news==id_news){
-                //console.log(savenew[i].id_news,id_news)
-                //set_checksave(true)
                 return true
             }
         }
@@ -41,8 +37,7 @@ const ProductItem = ({navigation,item}) =>{
         navigation.push('detail_news',data)
     }
     const isFocused = useIsFocused();    
-    useEffect(()=>{
-        console.log("hihi")
+    useEffect(()=>{        
         setcheckgetsavenews(!checkgetsavenews)
      },[isFocused]);
     
@@ -56,7 +51,7 @@ return(
       {item.header}
     </Text>
     <View style={{flexDirection:'row'}}>
-        <Text style={styles.itemPrice}>{item.cost} VNĐ</Text>
+        <Text style={styles.itemPrice}>{item.cost/10} triệu VNĐ</Text>
         {savenew==null?console.log("null nè"):checksavenew(item.id_news)==true?<Icon name="heart" style={{marginTop:'1%', marginLeft:'20%'}} size={20} color='red'/>
         :<Icon name="heart" size={20}  style={{marginTop:'1%', marginLeft:'20%'}} color='pink'/>}
     </View>
@@ -65,7 +60,7 @@ return(
 )};
 
 const MoreNews = ({navigation, id_news, id_user}) => {
-    const {listnews,setcheckget, checkget} = HookGetGoiY_News({id_user, id_news})
+    const {listnews} = HookGetGoiY_News({id_user, id_news})
     
     return (
     <View style={styles.sectionContainer}>

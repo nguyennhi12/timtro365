@@ -2,9 +2,9 @@ import { API_URL, News } from "./config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const apiSettings = {
     getNewsbydate: async (dateget) => {
-        console.log(JSON.stringify({date:dateget}))        
+        //console.log(JSON.stringify({date:dateget}))        
         const endpoint = `${API_URL}${News}new_News?page=1&value=8`;
-        console.log(endpoint)
+        //console.log(endpoint)
         const result = await fetch(endpoint,
             {
                 method:'POST',
@@ -19,16 +19,13 @@ const apiSettings = {
                 return JSON.parse(text);
               }).catch(function (error) { 
                 return {statusCode:300}             
-                console.log(error);
+                //console.log(error);
               });
         //console.log(result)
-        return result;
-     
+        return result;     
     },
-    getNewsbytype: async (type) => {
-      //console.log(JSON.stringify({date:dateget}))        
-      const endpoint = `${API_URL}${News}get_new_by_type?page=1&value=8`;
-      console.log(endpoint)
+    getNewsbytype: async (type) => {          
+      const endpoint = `${API_URL}${News}get_new_by_type?page=1&value=8`;      
       const result = await fetch(endpoint,
           {
               method:'POST',
@@ -48,10 +45,8 @@ const apiSettings = {
      
       return result;
   },
-  getimage_news_byid_news: async (id_news) => {
-    //console.log(JSON.stringify({date:dateget}))        
+  getimage_news_byid_news: async (id_news) => {       
     const endpoint = `${API_URL}${News}get_imagenewsbyidnews`;
-    console.log(endpoint)
     const result = await fetch(endpoint,
         {
             method:'POST',
@@ -67,15 +62,11 @@ const apiSettings = {
           }).catch(function (error) {               
             console.log(error);
           });
-        
-   
     return result;
   },
   get_save_news: async () => {  
-    const account = JSON.parse(await AsyncStorage.getItem("account")) 
-    console.log("account" ,account)     
-    const endpoint = `${API_URL}${News}getsavenews`;
-    console.log(endpoint)
+    const account = JSON.parse(await AsyncStorage.getItem("account"))     
+    const endpoint = `${API_URL}${News}getsavenews`;   
     const result = await fetch(endpoint,
         {
             method:'POST',           
@@ -90,14 +81,17 @@ const apiSettings = {
             return JSON.parse(text);
           }).catch(function (error) {               
             console.log(error);
-          });
-    //console.log(result)
-   
+          });    
     return result;
   },
   save_news: async (id_news) => {  
-    const account = JSON.parse(await AsyncStorage.getItem("account")) 
-    //console.log("account" ,account)     
+    const account = JSON.parse(await AsyncStorage.getItem("account"))
+    if(account==null){
+      return {
+        statusCode:401,
+        message:"Bạn chưa đăng nhập"
+      }
+    } 
     const endpoint = `${API_URL}${News}save_news`;
     console.log(endpoint)
     const result = await fetch(endpoint,
@@ -149,7 +143,7 @@ const apiSettings = {
     //const account = JSON.parse(await AsyncStorage.getItem("account")) 
     //console.log("account" ,account)     
     const endpoint = `${API_URL}${News}get_new_by_id_user?page=1&value=8`;
-    console.log(endpoint)
+    //console.log(endpoint)
     const result = await fetch(endpoint,
         {
             method:'POST',

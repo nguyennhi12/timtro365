@@ -7,14 +7,12 @@ import { useNavigation } from '@react-navigation/core';
 import Account from '../../../config/Account'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import showAlert from '../../untils/Alert'
-import {ReloadPage} from '../../../hook/Account'
 const LoginScreen =()=>{
     const [username,setusername]= useState("");
     const [password,setpassword]=useState("")    
     const navigation = useNavigation();
     const [icon, setIcon] = useState("eye-off")
-    const [hidePassword, setHidePassword] = useState(true)
-    const {outpage,setoutpage}=ReloadPage()
+    const [hidePassword, setHidePassword] = useState(true)    
     _changeIcon = () => {
         icon !== "eye"
         ? (setIcon("eye"), setHidePassword(false))
@@ -39,12 +37,8 @@ const LoginScreen =()=>{
                 }else{
                     var result=await Account.login(account)
                     if(result.statusCode==200){
-                        console.log(result)
                         await AsyncStorage.setItem("account",JSON.stringify(result.data).toString())
                         navigation.navigate('Thêm')
-                        // khúc này lấy trong AsyncStorage ra nè hihi
-                        // const test = JSON.parse(await AsyncStorage.getItem("account"))
-                        // console.log(test)
                     }else{
                         message=result.message
                         showAlert({title,message})
@@ -53,16 +47,12 @@ const LoginScreen =()=>{
                 }
             }
         }
-
-
-       
     }
 
     return(
         <ScrollView 
         style={{flex: 1, backgroundColor:'#fffffff'}}
         showsVerticalScrollIndicator={false}>
-            {console.log({outpage})}
             <NativeBaseProvider>
         <ImageBackground
          source={require('../../../images/backgroundimage.jpg')}
@@ -76,7 +66,6 @@ const LoginScreen =()=>{
         <View style={styles.bottomView}>
             <View style={{padding: 40}}>
                 <Text style={{color: 'blue', fontSize: 27}}>
-                    
                     Chào mừng bạn đến với ứng dụng tìm nhà trọ </Text>
                 <Text>
                     Bạn chưa có tài khoản ? 
@@ -87,7 +76,6 @@ const LoginScreen =()=>{
                     </Text> 
                 </Text>   
                 <View style={{marginTop: 50}}>
-                   
                     <Input label="Username" placeholder="Nhập tài khoản"   leftIcon={
                                                                         <Icon name="email" color="black" size={20} />  }
                                                                         onChangeText={(text)=>setusername(text)}/>
@@ -112,11 +100,9 @@ const LoginScreen =()=>{
                 <View style={{height:50, justifyContent:'center',alignItems:'center'}}>
                 
                 <Button mt="1" colorScheme="purple" _text={{ color: 'white' }}
-                        onPress={onclick}
-                >
+                        onPress={onclick}>
                      Đăng nhập
                 </Button>
-            
                 </View>
             </View>
         </View>
