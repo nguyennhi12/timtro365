@@ -1,0 +1,5 @@
+export const COLOR = {
+  MAIN_COLOR: '#FCC300',
+  BACK_GROUND_COLOR: '#FFFCCC',
+  BOTTOM_LINE: '#CCCCCC',
+};

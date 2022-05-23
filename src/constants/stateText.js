@@ -1,0 +1,5 @@
+export const STATE_TEXT = {
+  EMAIL: 'EMAIL',
+  PASSWORD: 'PASSWORD',
+  FULL_NAME: 'FULL_NAME',
+};
