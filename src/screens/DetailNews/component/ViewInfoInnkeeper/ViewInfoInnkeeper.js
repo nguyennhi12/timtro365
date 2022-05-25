@@ -4,10 +4,24 @@ import {Avatar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './ViewInfoInnkeeper.styles';
 import {AuthNav} from '../../../../constants/routes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ASYNC_STORAGE} from '../../../../constants';
 const ViewInfoInnkeeper = props => {
   const navigation = useNavigation();
-  const onPressViewPage = () => {
-    navigation.navigate(AuthNav.INFORMATION_INNKEEPER, props.info[0]);
+  const onPressViewPage = async () => {
+    console.log(props.info[0]);
+    const account = JSON.parse(
+      await AsyncStorage.getItem(ASYNC_STORAGE.ACCOUNT),
+    );
+    console.log(account);
+    if (props.info[0].email == account.email) {
+      navigation.reset({
+        index: 0,
+        routes: [{name: AuthNav.TAB_NAV, params: {name: 'settings'}}],
+      });
+    } else {
+      navigation.navigate(AuthNav.INFORMATION_INNKEEPER, props.info[0]);
+    }
   };
   return (
     <View style={styles.container}>

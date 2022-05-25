@@ -21,10 +21,10 @@ const ListSuggestNews = props => {
     listSuggestNews,
     isLoadingListSuggestNews,
     setIsLoadingListSuggestNews,
-  } = useSuggestNews(
-    {id_news: props.news.id_news},
-    {id_user: props.news.id_user},
-  );
+  } = useSuggestNews({
+    id_news: props.news.id_news,
+    id_user: props.news.id_user,
+  });
   const CheckSaveNews = id_news => {
     for (let i = 0; i < isSaveNews.length; i++) {
       if (isSaveNews[i].id_news == id_news) {
@@ -98,9 +98,11 @@ const ListSuggestNews = props => {
 
   return (
     <View style={styles.sectionContainer}>
+      <Text style={styles.stylesTextHeader.stylesText}>Tin đăng tương tự</Text>
       <View>
         <FlatList
           horizontal
+          contentContainerStyle={{paddingBottom: 40}}
           data={listSuggestNews}
           renderItem={renderItem}
           keyExtractor={item => item.id_news}

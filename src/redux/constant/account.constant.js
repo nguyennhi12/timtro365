@@ -1,0 +1,7 @@
+const ACCOUNT = 'ACCOUNT';
+
+export const ACCOUNT_TYPE = {
+  LOGIN_HANDLE: `${ACCOUNT}/LOGIN_HANDLE`.toString(),
+  LOGIN_SUCCESS: `${ACCOUNT}/LOGIN_SUCCESS`.toString(),
+  LOGIN_FAILURE: `${ACCOUNT}/LOGIN_FAILURE`.toString(),
+};

@@ -6,6 +6,8 @@ import SplashScreen from 'react-native-splash-screen';
 import {LogBox} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ASYNC_STORAGE} from './src/constants';
+import {Provider} from 'react-redux';
+import {store} from './src/redux/configStore';
 const App = () => {
   LogBox.ignoreLogs(
     ["exported from 'deprecated-react-native-prop-types'."],
@@ -22,9 +24,11 @@ const App = () => {
     onLogin();
   }, []);
   return (
-    <NavigationContainer>
-      {!!account ? <RootNavigation /> : <AuthNavigation />}
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        {!!account ? <RootNavigation /> : <AuthNavigation />}
+      </NavigationContainer>
+    </Provider>
   );
 };
 export default App;

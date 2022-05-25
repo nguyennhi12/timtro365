@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import ApiAccountUntil from '../../../../untils/ApiAccountUntils';
 import {ToastAndroid} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {loginHandle} from '../../../../redux/action/account.action';
 const LoginFormContainer = props => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState('');
@@ -12,6 +14,7 @@ const LoginFormContainer = props => {
   const [isPassWordError, setIsPasswordError] = useState(true);
   const [isEnableButton, setIsEnableButton] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   useEffect(() => {
     setEmail(props?.email);
   }, [props?.email]);
@@ -21,10 +24,11 @@ const LoginFormContainer = props => {
       : setIsEnableButton(true);
   }, [isEmailError, isPassWordError]);
   const onLogin = async () => {
-    var title = 'ERROR';
-    var message = '';
     let username = email;
     var account = {username, password};
+    //dispatch(loginHandle(account));
+    // console.log('wwww');
+    var message = '';
     var result = await ApiAccountUntil.login(account);
     console.log('result', result);
     if (result.statusCode == 200) {

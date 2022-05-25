@@ -84,4 +84,15 @@ export const styles = StyleSheet.create({
       fontFamily: FONT_FAMILY.HEADER,
     },
   },
+  stylesTextHeader: {
+    alignItems: 'center',
+
+    width: setScale(380),
+    margin: setScale(10),
+    stylesText: {
+      fontSize: setScale(18),
+      fontFamily: FONT_FAMILY.HEADER,
+      color: 'black',
+    },
+  },
 });

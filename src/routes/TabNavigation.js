@@ -64,9 +64,12 @@ function MyTabBar({state, descriptors, navigation}) {
 
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigation() {
+export default function TabNavigation({route}) {
+  console.log('TabNavigation.js', route?.params?.name);
   return (
-    <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
+    <Tab.Navigator
+      tabBar={props => <MyTabBar {...props} />}
+      initialRouteName={route?.params?.name}>
       <Tab.Screen
         name="home"
         component={Home}

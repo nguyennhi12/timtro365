@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ASYNC_STORAGE} from '../constants';
 const ApiAccountUntil = {
   login: async account => {
+    console.log('ApiAccountUntils.js', account, `${API_URL}${Account}login`);
     const endpoint = `${API_URL}${Account}login`;
     const result = await fetch(endpoint, {
       method: 'POST',
@@ -13,12 +14,16 @@ const ApiAccountUntil = {
       },
     })
       .then(e => {
+        console.log(e.text);
         return e.text();
       })
       .then(text => {
+        console.log(JSON.parse(text));
         return JSON.parse(text);
       })
-      .catch(function (error) {});
+      .catch(function (error) {
+        console.log(error);
+      });
     return result;
   },
   signin: async account => {
