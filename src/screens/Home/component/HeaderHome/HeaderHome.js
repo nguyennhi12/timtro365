@@ -1,8 +1,14 @@
 import React from 'react';
-import {View, TextInput} from 'react-native';
+import {View, TextInput, TouchableOpacity} from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {styles} from './HeaderHome.styles';
+import {useNavigation} from '@react-navigation/native';
+import {AuthNav} from '../../../../constants/routes';
 const HeaderHome = () => {
+  const navigation = useNavigation();
+  const onNavigate = () => {
+    navigation.navigate(AuthNav.MESSAGE);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.search}>
@@ -24,11 +30,13 @@ const HeaderHome = () => {
           size={30}
           style={{marginRight: 20, color: 'black'}}
         />
-        <IconAntDesign
-          name="message1"
-          size={30}
-          style={{marginRight: 20, color: 'black'}}
-        />
+        <TouchableOpacity onPress={onNavigate}>
+          <IconAntDesign
+            name="message1"
+            size={30}
+            style={{marginRight: 20, color: 'black'}}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );

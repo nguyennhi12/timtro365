@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "411389767646",
+    "project_id": "chatfirebase-b780f",
+    "storage_bucket": "chatfirebase-b780f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411389767646:android:a43b30095724ce4ba6b74f",
+        "android_client_info": {
+          "package_name": "com.timtroapp_cli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411389767646-ea643j5prctb28966rjmvc2r9cbb5u96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.timtroapp_cli",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "411389767646-oseigb514sjvs2lurdtn53er71mklofa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3q4dUzkf2MG_tMOwCG6acgO3LtyRZz2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411389767646-oseigb514sjvs2lurdtn53er71mklofa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

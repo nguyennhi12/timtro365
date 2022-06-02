@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home/Home';
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MyAccount from '../screens/MyAccount/MyAccount';
+import PostNews from '../screens/PostNews/PostNews';
 import {COLOR} from '../constants/color';
 function SettingsScreen() {
   return (
@@ -78,7 +79,7 @@ export default function TabNavigation({route}) {
       />
       <Tab.Screen
         name="create"
-        component={SettingsScreen}
+        component={PostNews}
         options={{headerShown: false}}
         nameTab="Post News"
       />
